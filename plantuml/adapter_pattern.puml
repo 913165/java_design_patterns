@@ -1,0 +1,30 @@
+@startuml
+interface MediaPlayer {
+    + void play(String audioType, String fileName)
+}
+
+interface AdvancedMediaPlayer {
+    + void playMp4(String fileName)
+}
+
+class Mp4Player implements AdvancedMediaPlayer {
+    + void playMp4(String fileName)
+}
+
+class MediaAdapter implements MediaPlayer {
+    - AdvancedMediaPlayer advancedMusicPlayer
+    + MediaAdapter(String audioType)
+    + void play(String audioType, String fileName)
+}
+
+class AudioPlayer implements MediaPlayer {
+    - MediaAdapter mediaAdapter
+    + void play(String audioType, String fileName)
+}
+
+MediaPlayer <|.. AudioPlayer
+MediaPlayer <|.. MediaAdapter
+AdvancedMediaPlayer <|.. Mp4Player
+MediaAdapter --> AdvancedMediaPlayer : uses
+
+@enduml

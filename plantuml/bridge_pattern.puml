@@ -1,0 +1,33 @@
+@startuml
+interface Color {
+    +applyColor(): void
+}
+
+class RedColor implements Color {
+    +applyColor(): void
+}
+
+class GreenColor implements Color {
+    +applyColor(): void
+}
+
+abstract class Shape {
+    -color: Color
+    +Shape(color: Color)
+    +applyColor(): void
+}
+
+class Circle extends Shape {
+    +applyColor(): void
+}
+
+class Square extends Shape {
+    +applyColor(): void
+}
+
+Shape *-right-> Color
+Circle -up-|> Shape
+Square -up-|> Shape
+RedColor -down-|> Color
+GreenColor -down-|> Color
+@enduml
